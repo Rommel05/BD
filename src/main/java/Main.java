@@ -14,6 +14,7 @@ public class Main {
         //insaertarUsuarios(4,"Maria","Gonzales");
         //crearTablaEmp();
         //instertarEmpleados();
+        allEmpleados();
     }
     private static void crearTabla() throws SQLException{
         Statement st = con.createStatement();
@@ -73,5 +74,17 @@ public class Main {
         st.setInt(4,40);
         st.setDouble(5,1300.0);
         st.executeUpdate();
+    }
+
+    private static void allEmpleados() throws SQLException{
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM empleados");
+        while (rs.next()) {
+            System.out.println(rs.getInt(1) + "\t");
+            System.out.println(rs.getString(2) + "\t");
+            System.out.println(rs.getInt(3) + "\t");
+            System.out.println(rs.getInt(4) + "\t");
+            System.out.println(rs.getDouble(5) + "\t");
+        }
     }
 }
