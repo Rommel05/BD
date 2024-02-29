@@ -10,6 +10,7 @@ public class Main {
         //crearTabla();
         //usuarios();
         insaertarUsuarios(3,"Rommel","Romero");
+        insaertarUsuarios(4,"Maria","Gonzales");
     }
     private static void crearTabla() throws SQLException{
         Statement st = con.createStatement();
