@@ -7,21 +7,25 @@ public class Network {
     public static void main(String[] args) throws SQLException {
         String host = "jdbc:sqlite:src/main/resources/network1";
         con = java.sql.DriverManager.getConnection( host );
-        System.out.println("1 Para crear usuario" + "\n" + "2 para borrar usuario" + "\n" + "3 para crear posts" + "\n" + "4 para eliminar posts" + "\n" +  "5 para añadir comentarios" + "\n" + "6 para eliminar comentarios" + "\n" + "0 para finalizar");
         Scanner sc = new Scanner(System.in);
-        int num = sc.nextInt();
+        System.out.println("Introduce una de las opciones:");
+        System.out.println("1 Para crear usuario" + "\n" + "2 para borrar usuario" + "\n" + "3 para crear posts" + "\n" + "4 para eliminar posts" + "\n" +  "5 para añadir comentarios" + "\n" + "6 para eliminar comentarios" + "\n" + "0 para finalizar");
         while (true) {
+            int num = sc.nextInt();
             if (num == 0) {
                 break;
             }
             if (num == 1) {
                 crearUsuarios();
             }
+
         }
     }
     private static void crearUsuarios() throws SQLException{
         Scanner sc = new Scanner(System.in);
+        System.out.println("Introduce el nombre");
         String nombre = sc.nextLine();
+        System.out.println("Introduce el apellido");
         String apellido = sc.nextLine();
         PreparedStatement st = null;
         String sql = "INSERT INTO usuarios (nombre, apellidos) values (?, ?)";
@@ -29,5 +33,9 @@ public class Network {
         st.setString(1,nombre);
         st.setString(2,apellido);
         st.executeUpdate();
+    }
+
+    private static void borrarUsuarios() throws SQLException{
+
     }
 }
