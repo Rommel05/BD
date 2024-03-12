@@ -14,7 +14,7 @@ public class Network {
     private static void menu() throws SQLException{
         while (true) {
             Scanner sc = new Scanner(System.in);
-            System.out.println("0 salir || 1 login");
+            System.out.println("0 Salir || 1 Login");
             int opcion = sc.nextInt();
 
             if (opcion == 0) {
@@ -53,7 +53,7 @@ public class Network {
 
         while (true) {
             Scanner sc = new Scanner(System.in);
-            System.out.println(" 0 Salir || 1 post || 2 comentario ");
+            System.out.println(" 0 Salir || 1 Post || 2 Comentario ");
             int opcion = sc.nextInt();
             if (opcion == 0) {
                 break;
@@ -69,7 +69,20 @@ public class Network {
     }
 
     private static void posts() {
-
+        while (true) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("0 Salir || 1 Crear post || 2 Borrar post");
+            int opcion = sc.nextInt();
+            if (opcion == 0) {
+                break;
+            } else if (opcion == 1) {
+                System.out.println("Crear post");
+            } else if (opcion == 2) {
+                System.out.println("Borrar post");
+            } else {
+                System.out.println("Opción inválida.");
+            }
+        }
     }
 
     private static void comentarios() {
