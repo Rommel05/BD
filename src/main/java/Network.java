@@ -12,16 +12,17 @@ public class Network {
         menu();
     }
     private static void menu() throws SQLException{
-        Scanner sc = new Scanner(System.in);
-        System.out.println("0 salir || 1 login");
-        int opcion = sc.nextInt();
         while (true) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("0 salir || 1 login");
+            int opcion = sc.nextInt();
+
             if (opcion == 0) {
                 break;
-            }
-            if (opcion == 1) {
+            } else if (opcion == 1) {
                 log();
-                opcionesDentroUsuario();
+            } else {
+                System.out.println("Opción inválida.");
             }
         }
     }
@@ -42,22 +43,26 @@ public class Network {
 
         if (rs.next()) {
             System.out.println("Se inició la sesión exitosamente");
+            opcionesDentroUsuario();
         } else {
             System.out.println("No se pudo iniciar la sesión");
         }
     }
 
     private static void opcionesDentroUsuario() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println(" 0 Salir || 1 post || 2 comentario ");
-        int opcion = sc.nextInt();
+
         while (true) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println(" 0 Salir || 1 post || 2 comentario ");
+            int opcion = sc.nextInt();
             if (opcion == 0) {
                 break;
             } else if (opcion == 1) {
                 posts();
-            } else {
+            } else if (opcion == 2) {
                 comentarios();
+            } else {
+                System.out.println("Opción inválida.");
             }
 
         }
