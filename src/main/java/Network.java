@@ -1,5 +1,6 @@
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class Network {
@@ -17,6 +18,11 @@ public class Network {
             }
             if (num == 1) {
                 crearUsuarios();
+                System.out.println("Introduce otra opción: ");
+            }
+            if (num == 2) {
+                borrarUsuarios();
+                System.out.println("Introduce otra opción: ");
             }
 
         }
@@ -36,6 +42,10 @@ public class Network {
     }
 
     private static void borrarUsuarios() throws SQLException{
-
+        Scanner sc = new Scanner(System.in);
+        Statement st = con.createStatement();
+        System.out.println("Introduce el nombre");
+        String nombre = sc.nextLine();
+        String sql = "DELETE FROM usuarios WHERE nombre = " + nombre;
     }
 }
