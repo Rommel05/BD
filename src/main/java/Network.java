@@ -1,4 +1,5 @@
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
@@ -8,44 +9,45 @@ public class Network {
     public static void main(String[] args) throws SQLException {
         String host = "jdbc:sqlite:src/main/resources/network1";
         con = java.sql.DriverManager.getConnection( host );
+        menu();
+    }
+    private static void menu() throws SQLException{
         Scanner sc = new Scanner(System.in);
-        System.out.println("Introduce una de las opciones:");
-        System.out.println("1 Para crear usuario" + "\n" + "2 para borrar usuario" + "\n" + "3 para crear posts" + "\n" + "4 para eliminar posts" + "\n" +  "5 para añadir comentarios" + "\n" + "6 para eliminar comentarios" + "\n" + "0 para finalizar");
+        System.out.println("0 salir || 1 login");
+        int opcion = sc.nextInt();
         while (true) {
-            int num = sc.nextInt();
-            if (num == 0) {
+            if (opcion == 0) {
                 break;
             }
-            if (num == 1) {
-                crearUsuarios();
-                System.out.println("Introduce otra opción: ");
+            if (opcion == 1) {
+                log();
+                break;
             }
-            if (num == 2) {
-                borrarUsuarios();
-                System.out.println("Introduce otra opción: ");
-            }
-
         }
     }
-    private static void crearUsuarios() throws SQLException{
+
+    private static void log() throws SQLException {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Introduce el nombre");
+        System.out.println("Ingrese el nombre de usuario:");
         String nombre = sc.nextLine();
-        System.out.println("Introduce el apellido");
-        String apellido = sc.nextLine();
+        System.out.println("Ingrese la contraseña:");
+        String contraseña = sc.nextLine();
         PreparedStatement st = null;
-        String sql = "INSERT INTO usuarios (nombre, apellidos) values (?, ?)";
-        st = con.prepareStatement(sql);
+        String query = "select * from usuarios where nombre = ? and contraseña = ?";
+        st = con.prepareStatement(query);
         st.setString(1,nombre);
-        st.setString(2,apellido);
-        st.executeUpdate();
+        st.setString(2,contraseña);
+
+        ResultSet rs = st.executeQuery();
+
+        if (rs.next()) {
+            System.out.println("Se inició la sesión exitosamente");
+        } else {
+            System.out.println("No se pudo iniciar la sesión");
+        }
     }
 
-    private static void borrarUsuarios() throws SQLException{
-        Scanner sc = new Scanner(System.in);
-        Statement st = con.createStatement();
-        System.out.println("Introduce el nombre");
-        String nombre = sc.nextLine();
-        String sql = "DELETE FROM usuarios WHERE nombre = " + nombre;
+    private static void opcionesDentroUsuario() {
+
     }
 }
