@@ -21,7 +21,7 @@ public class Network {
             }
             if (opcion == 1) {
                 log();
-                break;
+                opcionesDentroUsuario();
             }
         }
     }
@@ -48,6 +48,26 @@ public class Network {
     }
 
     private static void opcionesDentroUsuario() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println(" 0 Salir || 1 post || 2 comentario ");
+        int opcion = sc.nextInt();
+        while (true) {
+            if (opcion == 0) {
+                break;
+            } else if (opcion == 1) {
+                posts();
+            } else {
+                comentarios();
+            }
+
+        }
+    }
+
+    private static void posts() {
+
+    }
+
+    private static void comentarios() {
 
     }
 }
