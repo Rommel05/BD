@@ -56,7 +56,7 @@ public class Network1{
         if (currentScreen == 0) {
             System.out.println("0 Exit | 1 All posts | 2 Log in ! 3 Register");
         } else {
-            System.out.println("0 Exit | 1 My posts | 2 New post | 3 New comment | 4 Like | 5 Other's Posts | 6 Logout | 7 información " + userName);
+            System.out.println("0 Exit | 1 My posts | 2 New post | 3 New comment | 4 Like | 5 Other's Posts | 6 Logout "  + userName);
         }
         System.out.println("-------------------------------------------------------------------------------------------------");
     }
@@ -170,10 +170,6 @@ public class Network1{
         st = con.prepareStatement(query);
         st.setInt(1,postid);
         st.executeUpdate();
-    }
-
-    private static void informacion() {
-
     }
 }
 
