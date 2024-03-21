@@ -34,7 +34,6 @@ public class Network1{
                     case 2: newPost(); break;
                     case 3: newComment(); break;
                     case 4: like(); break;
-                    case
                 }
             }
         }
@@ -97,33 +96,33 @@ public class Network1{
     }
     private static void allPost() throws SQLException{
         PreparedStatement st = null;
-        String query= "Select* From posts ";
+        String query= "Select u.nombre, p.id ,p.texto, p.likes, p.fecha From posts p, usuarios u where p.id_usuario = u.id";
         st = con.prepareStatement(query);
         ResultSet rs = st.executeQuery();
         while (rs.next()) {
-            System.out.println(rs.getInt("id") + " - " + rs.getString("texto"));
+            System.out.println(rs.getString("nombre") + " - " + rs.getInt("id") + " - " + rs.getString("texto") + " - " + rs.getInt("likes") + " - " +rs.getDate("fecha"));
         }
     }
 
     private static void MyPost() throws SQLException{
         PreparedStatement st = null;
-        String query= "Select* From posts where id_usuario = ?";
+        String query= "Select u.nombre, p.id ,p.texto, p.likes, p.fecha From posts p, usuarios u where p.id_usuario = u.id and id_usuario = ?";
         st = con.prepareStatement(query);
         st.setInt(1, userId);
         ResultSet rs = st.executeQuery();
         while (rs.next()) {
-            System.out.println(rs.getInt("id") + " - " + rs.getString("texto"));
+            System.out.println(rs.getString("nombre") + " - " + rs.getInt("id") + " - " + rs.getString("texto") + " - " + rs.getInt("likes") + " - " +rs.getDate("fecha"));
         }
     }
 
     private static void OtherPost() throws SQLException{
         PreparedStatement st = null;
-        String query= "Select* From posts where id_usuario != ?";
+        String query= "Select u.nombre, p.id ,p.texto, p.likes, p.fecha From posts p, usuarios u where p.id_usuario = u.id and id_usuario != ? ";
         st = con.prepareStatement(query);
         st.setInt(1, userId);
         ResultSet rs = st.executeQuery();
         while (rs.next()) {
-            System.out.println(rs.getInt("id") + " - " + rs.getString("texto"));
+            System.out.println(rs.getString("nombre") + " - " + rs.getInt("id") + " - " + rs.getString("texto") + " - " + rs.getInt("likes") + " - " +rs.getDate("fecha"));
         }
     }
 
